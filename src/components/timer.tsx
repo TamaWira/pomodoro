@@ -35,9 +35,7 @@ export function Timer() {
   }, [isPlay, timeLeft]);
 
   useEffect(() => {
-    const audio = new Audio(
-      "https://assets.coderrocketfuel.com/pomodoro-times-up.mp3"
-    );
+    const audio = new Audio("pomodoro-times-up.mp3");
     audio.play().catch((error) => {
       console.error("Audio playback failed:", error);
     });
