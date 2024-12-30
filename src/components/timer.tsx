@@ -5,12 +5,14 @@ import { MdSkipNext } from "react-icons/md";
 import { RiResetLeftFill } from "react-icons/ri";
 import { FaPause, FaPlay } from "react-icons/fa6";
 import { formatTime } from "@/utils/formatTime";
+import { useStore } from "@/store/useStore";
 
-const focusDuration = 60 * 25; // 25 minutes
+// const focusDuration = 60 * 25; // 25 minutes
 const breakDuration = 60 * 5; // 5 minutes
 const longBreakDuration = 60 * 15; // 15 minutes
 
 export function Timer() {
+  const focusDuration = useStore((state) => state.focusDuration);
   const [isPlay, setIsPlay] = useState(false);
   const [timeLeft, setTimeLeft] = useState(focusDuration);
   const [currentSessionIndex, setCurrentSessionIndex] = useState(0);
@@ -19,6 +21,11 @@ export function Timer() {
     title: "Focus!",
     description: "Obliterate those pesky tasks!",
   });
+
+  useEffect(() => {
+    console.log("LOG :: focusDuration:", focusDuration);
+    setTimeLeft(focusDuration);
+  }, [focusDuration]);
 
   useEffect(() => {
     let timer: any;
@@ -35,10 +42,12 @@ export function Timer() {
   }, [isPlay, timeLeft]);
 
   useEffect(() => {
-    const audio = new Audio("pomodoro-times-up.mp3");
-    audio.play().catch((error) => {
-      console.error("Audio playback failed:", error);
-    });
+    if (currentSessionIndex > 0) {
+      const audio = new Audio("pomodoro-times-up.mp3");
+      audio.play().catch((error) => {
+        console.error("Audio playback failed:", error);
+      });
+    }
 
     if (currentSessionIndex % 2 === 0) {
       setSessionToFocus();
