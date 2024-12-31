@@ -4,6 +4,8 @@ A simple and efficient Pomodoro timer application to help you stay focused and p
 
 Based on this [project](https://roadmap.sh/projects/pomodoro-timer) on Roadmap.sh
 
+You can also use it on [this link](https://pomodoro-sandy-five.vercel.app/)
+
 ## Features
 
 - Start/Stop a Pomodoro timer.
