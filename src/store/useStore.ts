@@ -23,10 +23,10 @@ export const useStore = create<StoreState>((set) => ({
   breakDuration: 60 * 5,
   setBreakDuration: (n: number) => set(() => ({ breakDuration: n })),
 
-  longBreakDuration: 60 * 5,
+  longBreakDuration: 60 * 15,
   setLongBreakDuration: (n: number) => set(() => ({ longBreakDuration: n })),
 
-  longBreakInterval: 60 * 5,
+  longBreakInterval: 4,
   setLongBreakInterval: (n: number) => set(() => ({ longBreakInterval: n })),
 
   isOpenConfigModal: false,
