@@ -8,11 +8,17 @@ import { formatTime } from "@/utils/formatTime";
 import { useStore } from "@/store/useStore";
 
 // const focusDuration = 60 * 25; // 25 minutes
-const breakDuration = 60 * 5; // 5 minutes
-const longBreakDuration = 60 * 15; // 15 minutes
+// const breakDuration = 60 * 5; // 5 minutes
+// const longBreakDuration = 60 * 15; // 15 minutes
 
 export function Timer() {
+  // Stres
   const focusDuration = useStore((state) => state.focusDuration);
+  const breakDuration = useStore((state) => state.breakDuration);
+  const longBreakDuration = useStore((state) => state.longBreakDuration);
+  const longBreakInterval = useStore((state) => state.longBreakInterval);
+
+  // States
   const [isPlay, setIsPlay] = useState(false);
   const [timeLeft, setTimeLeft] = useState(focusDuration);
   const [currentSessionIndex, setCurrentSessionIndex] = useState(0);
@@ -57,7 +63,7 @@ export function Timer() {
       return;
     } else if (
       currentSessionIndex % 2 !== 0 &&
-      currentSessionNumber % 4 === 0
+      currentSessionNumber % longBreakInterval === 0
     ) {
       setSessionToLongBreak();
       return;

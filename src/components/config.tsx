@@ -48,6 +48,9 @@ export default function Config() {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFocusDuration(focusDurationConfig * 60);
+    setBreakDuration(breakDurationConfig * 60);
+    setLongBreakDuration(longBreakDurationConfig * 60);
+    setLongBreakInterval(longBreakIntervalConfig);
     toggleOpenConfigModal();
   };
 
@@ -110,7 +113,7 @@ export default function Config() {
                 id="focus"
                 type="number"
                 value={longBreakIntervalConfig}
-                onChange={(e) => setLongBreakDurationConfig(+e.target.value)}
+                onChange={(e) => setLongBreakIntervalConfig(+e.target.value)}
               />
             </div>
             <div className="flex justify-center items-center mt-10">
